@@ -31,8 +31,5 @@ class parcel extends Model
                 'parcels.phone',
             );
     }
-    public function address()
-    {
-        return $this->belongsTo('App\Models\address','A_ID','id');
-    }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\address;
+use App\Models\Building;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,7 @@ class addresscontroller extends Controller
     //
     public  function index()
     {
-        $addresses=DB::table('addresses')
+       /* $addresses=DB::table('addresses')
             ->join('buildings','addresses.B_ID','=','buildings.id')
             ->orderBy('addresses.id')
             ->select(
@@ -21,10 +22,9 @@ class addresscontroller extends Controller
                 'buildings.B_Name as Bname',
                 'addresses.phone'
             )->get();
-
-        return view( ' addresses.index',['addresses'=>$addresses]);
-    }
-
+*/$addresses = address::all();
+       return view( ' addresses.index',['addresses'=>$addresses]);
+}
 
 
     public function create()

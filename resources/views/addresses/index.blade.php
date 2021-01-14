@@ -20,7 +20,7 @@
         <tr style="text-align:center;">
             <td>{{$address->id }}</td>
             <td>{{$address ->address }}</td>
-            <td>{{$address->Bname }}</td>
+            <td>{{$address->building->B_Name }}</td>
             <td>{{$address->phone }}</td>
             <td><a href="{{route('addresses.show',['id'=>$address->id])}}">显示</a></td>
             <td><a href="{{route('addresses.edit',['id'=>$address->id])}}">修改</a></td>

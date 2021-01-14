@@ -33,5 +33,8 @@ class address extends Model
     {
         return $this->hasMany('App\Models\tenant','A_ID','id');
     }
-
+    public function Building()
+    {
+        return $this->belongsTo('App\Models\Building','B_ID','id');
+    }
 }
