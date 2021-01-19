@@ -18,6 +18,7 @@
         <th>操作1</th>
         <th>操作2</th>
         <th>操作3</th>
+        <th>操作4</th>
     </tr>
     @foreach($parcels as $parcel)
         <tr>
@@ -30,6 +31,7 @@
             <td>{{$parcel->phone}}</td>
             <td><a href="{{route('parcels.show',['id'=>$parcel->id])}}">显示</a></td>
             <td><a href="{{route('parcels.edit',['id'=>$parcel->id])}}">修改</a></td>
+            <td><a href="{{route('parcels.photo')}}">照片</a></td>
             <td>
                 <form action="{{ url('/parcels/delete', ['id' => $parcel->id]) }}" method="post">
                     <input class="btn btn-default" type="submit" value="刪除" />

@@ -29,6 +29,7 @@ class parcel extends Model
                 'parcels.sign_date',
                 'parcels.sign_time',
                 'parcels.phone',
+                'parcels.photo',
             );
     }
 

@@ -5,6 +5,8 @@ use App\Http\Controllers\parcelscontroller;
 use App\Http\Controllers\addresscontroller;
 use App\Http\Controllers\tenantscontroller;
 use App\Http\Controllers\Buildingscontroller;
+use Intervention\Image\Facades\Image;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +19,7 @@ use App\Http\Controllers\Buildingscontroller;
 */
 
 Route::get('/', function () {
+
     return view('parcel_receipt_sys');
 });
 
@@ -65,6 +68,8 @@ Route::post('parcels/store',[parcelscontroller::class,'store'])->name('parcels.s
 Route::patch('parcels/update/{id}',[parcelscontroller::class,'update'])->where('id','[0-9]+')->name('parcels.update');
 
 Route::delete('parcels/delete/{id}',[parcelscontroller::class, 'destroy'])->where('id','[0-9]+')->name('parcels.destroy');
+
+Route::post('parcels/photo',[parcelscontroller::class,'photo'])->where('id','[0-9]+')->name('parcels.photo');
 
 
 Route::get( 'tenants',[tenantscontroller::class,'index'])->name('tenants.index');

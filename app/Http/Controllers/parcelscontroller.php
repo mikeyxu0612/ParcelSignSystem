@@ -8,7 +8,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\parcelRequest;
+use Intervention\Image\Facades\Image;
 use function Composer\Autoload\includeFile;
+use Illuminate\Support\Facades\Storage;
 
 
 class parcelscontroller extends Controller
@@ -153,12 +155,45 @@ class parcelscontroller extends Controller
     }
 
 
-
     public function destroy($id)
     {
        $parcel = parcel::findOrFail($id);
         $parcel->delete();
         return redirect('parcels');
     }
+
+    public function photo()
+    {
+        request()->validate([
+            'site_id' => 'required',
+            'progress' => 'required',
+            'estimated_delivery_date' => 'required|date',
+            'actual_delivery_date' => 'required|date',
+            'po_image' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+        ]);
+        $site_id = request('site_id');
+        $imagePath = request('po_image')->store("uploads/{$site_id}", 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $image->save(public_path("storage/{$imagePath}"), 60);
+
+        $image->save();
+        // Save Purchase Order Data
+        // Attach User Data
+       parcel::create([
+            'site_id' => request('site_id'),
+            'progress' => request('progress'),
+            'estimated_delivery_date' => request('estimated_delivery_date'),
+            'actual_delivery_date' => request('actual_delivery_date'),
+            'creator_id' => auth()->user()->id,
+            'po_image' => $imagePath
+        ]);
+        // Session Message
+        session()->flash('success', '上傳成功');
+        // Redirect Route
+        return redirect('parcels/create');
+    }
+
 }
 

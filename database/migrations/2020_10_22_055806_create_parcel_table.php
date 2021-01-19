@@ -19,7 +19,7 @@ class CreateParcelTable extends Migration
             $table->boolean('sign')->comment('簽收與否');
             $table->date('sign_date')->default('2018-01-01')->comment('管理員簽收時間');
             $table->char('phone')->comment('聯絡電話');
-            $table->date('sign_time')->default('2019-01-01')->comment('簽收时间');
+            $table->date('sign_time')->default('2019-01-01')->nullable()->comment('簽收时间');
             $table->string('Sign_proof')->comment('簽收憑證');
             $table->foreign('A_ID')->references('id')->on('addresses')->onDelete('cascade');
             $table->timestamps();

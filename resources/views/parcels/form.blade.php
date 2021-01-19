@@ -22,6 +22,15 @@
     {!! Form::label('A_ID','簽收人住址(外部鍵):') !!}
     {!! Form::text('A_ID',null,['class'=>'form-control']) !!}
 </div>
+
+<div class="form-group">
+    <form method="POST" action="{{ route('parcels.photo') }}" enctype="multipart/form-data">
+
+        <label for="po_image" class="block text-sm leading-5 font-medium text-gray-700">
+            表單上傳
+            <input type="file" name="po_image">
+        </label>
+</div>
 <div class="form-group">
     {!! Form::submit($SubmitButtonText,['class'=>'btn btn-primary form-control']) !!}
 </div>

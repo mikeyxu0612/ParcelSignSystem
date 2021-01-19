@@ -17,7 +17,7 @@ class CreateAddressTable extends Migration
             $table->id()->comment('住址編號');
             $table->string('address')->comment('住址');
             $table->foreignId('B_ID')->comment('棟名(外部鍵)');
-            $table->char('phone')->comment('聯絡電話');
+            $table->char('phone')->nullable()->comment('聯絡電話');
             $table->foreign('B_ID')->references('id')->on('building')->onDelete('cascade');
             $table->timestamps();
         });
