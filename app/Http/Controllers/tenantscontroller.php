@@ -28,7 +28,10 @@ class tenantscontroller extends Controller
                 'tenants.id',
                 'tenants.T_name',
                 'tenants.phone',
-                'tenants.A_ID'
+                'tenants.A_ID',
+                'tenants.city',
+                'tenants.area',
+                'tenants.road'
             )->get();
         return view('tenants.index',['tenants'=>$tenants, 'addresses'=>$data]);
     }
@@ -78,6 +81,9 @@ class tenantscontroller extends Controller
      $T_name=$request->input('T_name');
      $phone=$request->input('phone');
      $A_ID=$request->input('A_ID');
+     $city=$request->input('city');
+     $area=$request->input('area');
+     $road=$request->input('road');
      $random_datetime = Carbon::now()->subMinutes(rand(1, 55));
 
      tenant::create([
@@ -86,6 +92,9 @@ class tenantscontroller extends Controller
          'A_ID'=>$A_ID,
          'created_at'=>$random_datetime,
          'updated_at'=>$random_datetime,
+         'city'=>$city,
+         'area'=>$area,
+         'road'=>$road,
      ]);
         return redirect('tenants');
     }

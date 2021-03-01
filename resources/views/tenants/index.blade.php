@@ -17,7 +17,10 @@
         <th>編號（主鍵)</th>
         <th>住戶姓名</th>
         <th>聯絡電話</th>
-        <th>住址(外部鍵)</th>
+        <th>住址編號</th>
+        <th>縣/市</th>
+        <th>區/鎮</th>
+        <th>路段</th>
         <th>操作1</th>
         <th>操作2</th>
         <th>操作3</th>
@@ -28,6 +31,9 @@
             <td>{{$tenant ->T_name}}</td>
             <td>{{$tenant->phone }}</td>
             <td>{{$tenant->A_ID }}</td>
+            <td>{{$tenant->city}}</td>
+            <td>{{$tenant->area}}</td>
+            <td>{{$tenant->road}}</td>
             <td><a href="{{route('tenants.show',['id'=>$tenant->id])}}">显示</a></td>
             <td><a href="{{route('tenants.edit',['id'=>$tenant->id])}}">修改</a></td>
             <td>

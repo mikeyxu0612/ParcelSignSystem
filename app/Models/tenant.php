@@ -14,6 +14,9 @@ class tenant extends Model
         'T_name',
         'phone',
         'A_ID',
+        'city',
+        'area',
+        'road',
         'created_at',
         'updated_at'
     ];

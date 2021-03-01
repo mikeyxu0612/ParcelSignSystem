@@ -1,10 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\parcelscontroller;
 use App\Http\Controllers\addresscontroller;
 use App\Http\Controllers\tenantscontroller;
 use App\Http\Controllers\Buildingscontroller;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 /*
@@ -63,13 +65,12 @@ Route::get( 'parcels/{id}',[parcelscontroller::class,'show'])->where('id','[0-9]
 
 Route::get( 'parcels/{id}/edit',[parcelscontroller::class,'edit'])->where('id','[0-9]+')->name('parcels.edit');
 
-Route::post('parcels/store',[parcelscontroller::class,'store'])->name('parcels.store');
+Route::post('parcels/store',[parcelscontroller::class,'store'])->where('id','[0-9]+')->name('parcels.store');
 
 Route::patch('parcels/update/{id}',[parcelscontroller::class,'update'])->where('id','[0-9]+')->name('parcels.update');
 
 Route::delete('parcels/delete/{id}',[parcelscontroller::class, 'destroy'])->where('id','[0-9]+')->name('parcels.destroy');
 
-Route::post('parcels/photo',[parcelscontroller::class,'photo'])->where('id','[0-9]+')->name('parcels.photo');
 
 
 Route::get( 'tenants',[tenantscontroller::class,'index'])->name('tenants.index');
@@ -87,3 +88,4 @@ Route::patch('tenants/update/{id}',[tenantscontroller::class,'update'])->where('
 Route::delete('tenants/delete/{id}',[tenantscontroller::class, 'destroy'])->where('id','[0-9]+')->name('tenants.destroy');
 
 Route::post('tenants/AddressID',[tenantscontroller::class,'AddressID'])->name('tenants.AddressID');
+

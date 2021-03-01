@@ -29,6 +29,8 @@ class parcelscontroller extends Controller
                 'parcels.sign_time',
                 'parcels.sign_date',
                 'parcels.phone',
+                'parcels.Image',
+                'parcels.Qrcode',
             )->get();
         return view( 'parcels.index',['parcels'=>$parcels]);
     }
@@ -116,6 +118,12 @@ class parcelscontroller extends Controller
 
     public function store(parcelRequest $request)
     {
+        $imagePath = $request->file('image')->store("uploads/", 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $image->save(public_path("storage/{$imagePath}"), 60);
+        $image->save();
       $sign=$request->input('sign');
       $sign_date=$request->input('sign_date');
       $sign_time=$request->input('sign_time');
@@ -123,8 +131,7 @@ class parcelscontroller extends Controller
       $sign_proof=$request->input('Sign_proof');
       $A_ID=$request->input('A_ID');
         $random_datetime = Carbon::now()->subMinutes(rand(1, 55));
-
-        $parcel =parcel::create([
+        parcel::create([
             'A_ID'=>$A_ID,
             'sign'=>$sign,
             'sign_date'=>$sign_date,
@@ -133,10 +140,10 @@ class parcelscontroller extends Controller
             'Sign_proof'=>$sign_proof,
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,
+            'Image'=>$imagePath
         ]);
         return redirect('parcels');
     }
-
 
 
     public function update($id,parcelRequest $request)
@@ -153,47 +160,11 @@ class parcelscontroller extends Controller
         return redirect('parcels');
 
     }
-
-
     public function destroy($id)
     {
        $parcel = parcel::findOrFail($id);
         $parcel->delete();
         return redirect('parcels');
     }
-
-    public function photo()
-    {
-        request()->validate([
-            'site_id' => 'required',
-            'progress' => 'required',
-            'estimated_delivery_date' => 'required|date',
-            'actual_delivery_date' => 'required|date',
-            'po_image' => 'mimes:jpeg,jpg,png,gif|required|max:10000'
-        ]);
-        $site_id = request('site_id');
-        $imagePath = request('po_image')->store("uploads/{$site_id}", 'public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $image->save(public_path("storage/{$imagePath}"), 60);
-
-        $image->save();
-        // Save Purchase Order Data
-        // Attach User Data
-       parcel::create([
-            'site_id' => request('site_id'),
-            'progress' => request('progress'),
-            'estimated_delivery_date' => request('estimated_delivery_date'),
-            'actual_delivery_date' => request('actual_delivery_date'),
-            'creator_id' => auth()->user()->id,
-            'po_image' => $imagePath
-        ]);
-        // Session Message
-        session()->flash('success', '上傳成功');
-        // Redirect Route
-        return redirect('parcels/create');
-    }
-
 }
 

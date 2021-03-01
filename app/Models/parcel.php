@@ -15,6 +15,8 @@ class parcel extends Model
         'Sign_proof',
         'sign_date',
         'phone',
+        'Image',
+        'Qrcode',
         'created_at',
         'updated_at'
     ];
