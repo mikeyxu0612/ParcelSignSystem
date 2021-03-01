@@ -23,9 +23,5 @@
     {!! Form::text('A_ID',null,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('Image','上傳照片') !!}
-    {!! Form::file('Image',null,['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
     {!! Form::submit($SubmitButtonText,['class'=>'btn btn-primary form-control']) !!}
 </div>
