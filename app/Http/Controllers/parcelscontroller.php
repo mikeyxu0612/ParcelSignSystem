@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\address;
 use App\Models\parcel;
+use BaconQrCode\Encoder\QrCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -131,6 +132,10 @@ class parcelscontroller extends Controller
       $sign_proof=$request->input('Sign_proof');
       $A_ID=$request->input('A_ID');
         $random_datetime = Carbon::now()->subMinutes(rand(1, 55));
+        $qrcode=QrCode::size(200)
+            ->format('png')
+            ->generate(\request(url('parcels/edit',)),storage_path('app/public/qrcodes/'.'.png'));
+        
         parcel::create([
             'A_ID'=>$A_ID,
             'sign'=>$sign,
@@ -140,7 +145,8 @@ class parcelscontroller extends Controller
             'Sign_proof'=>$sign_proof,
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,
-            'Image'=>$imagePath
+            'Image'=>$imagePath,
+                'Qrcode'=>$qrcode
         ]);
         return redirect('parcels');
     }
