@@ -7,7 +7,7 @@
 <form method="POST" action="{{ route('parcels.store') }}" enctype="multipart/form-data">
 
     <label for="Image" class="block text-sm leading-5 font-medium text-gray-700">
-        表單上傳
+        照片上傳
         <input type="file" name="Image">
         @method('POST')
         @csrf
