@@ -13,7 +13,6 @@ class tenant extends Model
     protected $fillable = [
         'T_name',
         'phone',
-        'A_ID',
         'city',
         'area',
         'road',
@@ -28,7 +27,6 @@ class tenant extends Model
                 'tenants.id',
                 'tenants.T_name',
                 'tenants.phone',
-                'tenants.A_ID'
             );
     }
 
@@ -39,12 +37,12 @@ class tenant extends Model
 
     public function scopeAllAddressID($query)
     {
-        $query->select('A_ID')->groupBy('A_ID');
+        $query->select('T_name')->groupBy('T_name');
     }
 
     public function scopeAddressID($query, $Adrs)
     {
-        $query->where('A_ID','=',$Adrs)
+        $query->where('T_name','=',$Adrs)
             ->orderBy('id');
     }
 }

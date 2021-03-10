@@ -19,7 +19,7 @@ class tenantscontroller extends Controller
         $data = [];
         foreach ($addresses as $address)
         {
-            $data["$address->A_ID"] = $address->A_ID;
+            $data["$address->T_name"] = $address->T_name;
         }
 
         $tenants =DB::table('tenants')
@@ -28,7 +28,6 @@ class tenantscontroller extends Controller
                 'tenants.id',
                 'tenants.T_name',
                 'tenants.phone',
-                'tenants.A_ID',
                 'tenants.city',
                 'tenants.area',
                 'tenants.road'
@@ -45,7 +44,7 @@ class tenantscontroller extends Controller
          $data = [];
          foreach ($addresses as $address)
          {
-             $data["$address->A_ID"] = $address->A_ID;
+             $data["$address->T_name"] = $address->T_name;
          }
        return view('tenants.index',['tenants'=>$tenants,'addresses'=>$data]);
      }

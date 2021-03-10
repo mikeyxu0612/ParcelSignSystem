@@ -9,7 +9,6 @@ class parcel extends Model
     use HasFactory;
  /*   protected  $table="parcels";*/
     protected  $fillable=[
-        'A_ID',
         'sign',
         'sign_time',
         'Sign_proof',
@@ -25,7 +24,6 @@ class parcel extends Model
         $query  ->orderBy('parcels.id')
             ->select(
                 'parcels.id',
-                'parcels.A_ID',
                 'parcels.sign',
                 'parcels.Sign_proof',
                 'parcels.sign_date',
@@ -34,5 +32,4 @@ class parcel extends Model
                 'parcels.photo',
             );
     }
-
 }

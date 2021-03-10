@@ -21,21 +21,21 @@ class parcelscontroller extends Controller
     {
         /* $parcels =parcel::all()->sortBy('id',SORT_ASC);*/
         $parcels =DB::table('parcels')
+            ->join('tenants','parcels.Sign_proof','=','tenants.T_name')
             ->orderBy('parcels.id')
             ->select(
                 'parcels.id',
-                'parcels.A_ID',
                 'parcels.sign',
                 'parcels.Sign_proof',
                 'parcels.sign_time',
                 'parcels.sign_date',
+                'tenants.id as t_ID',
                 'parcels.phone',
                 'parcels.Image',
                 'parcels.Qrcode',
             )->get();
         return view( 'parcels.index',['parcels'=>$parcels]);
     }
-
 
 
     public function api_parcels()
@@ -76,7 +76,6 @@ class parcelscontroller extends Controller
         }
         $parcel->sign=$request->input('sign');
         $parcel->Sign_proof=$request->input('Sign_proof');
-        $parcel->A_ID=$request->input('A_ID');
         $parcel->sign_date=$request->input('sign_date');
         $parcel->phone=$request->input('phone');
         $parcel->sign_time=$request->input('sign_time');
@@ -130,15 +129,13 @@ class parcelscontroller extends Controller
       $sign_time=$request->input('sign_time');
       $phone=$request->input('phone');
       $sign_proof=$request->input('Sign_proof');
-      $A_ID=$request->input('A_ID');
-      $id=$A_ID;
+      $id=rand();
         $random_datetime = Carbon::now()->subMinutes(rand(1, 55));
         $qrcode=QrCode::size(200)
             ->format('png')
             ->generate(\request(url('parcels/edit',)),storage_path('app/public/qrcodes/'.$id.'.png'));
 
         parcel::create([
-            'A_ID'=>$A_ID,
             'sign'=>$sign,
             'sign_date'=>$sign_date,
             'sign_time'=>$sign_time,
@@ -159,7 +156,6 @@ class parcelscontroller extends Controller
 
         $parcel->sign=$request->input('sign');
         $parcel->Sign_proof=$request->input('Sign_proof');
-        $parcel->A_ID=$request->input('A_ID');
         $parcel->sign_date=$request->input('sign_date');
         $parcel->phone=$request->input('phone');
         $parcel->sign_time=$request->input('sign_time');

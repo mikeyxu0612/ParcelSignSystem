@@ -72,13 +72,11 @@ class TenantsTableSeeder extends Seeder
         {
        $T_name=$this->generateRandomTname();
         $phone=$this->generateRandomphone();
-        $A_ID=rand(0,30);
         $random_datetime =Carbon::now()->subMinutes(rand(1,55));
         DB::table('tenants')->insert(
             [
                 'T_name'=>$T_name,
                 'phone'=>$phone,
-                'A_ID'=>$A_ID,
                 'created_at'=>$random_datetime,
                 'updated_at'=>$random_datetime,
 

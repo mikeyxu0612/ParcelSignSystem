@@ -17,7 +17,6 @@
         <th>編號（主鍵)</th>
         <th>住戶姓名</th>
         <th>聯絡電話</th>
-        <th>住址編號</th>
         <th>縣/市</th>
         <th>區/鎮</th>
         <th>路段</th>
@@ -30,7 +29,6 @@
             <td>{{$tenant->id }}</td>
             <td>{{$tenant ->T_name}}</td>
             <td>{{$tenant->phone }}</td>
-            <td>{{$tenant->A_ID }}</td>
             <td>{{$tenant->city}}</td>
             <td>{{$tenant->area}}</td>
             <td>{{$tenant->road}}</td>

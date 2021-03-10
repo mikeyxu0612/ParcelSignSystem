@@ -15,23 +15,25 @@
 </div>
 <table>
     <tr>
-        <th>包裹編號</th>
-        <th>住址</th>
+        <th>包裹編號（主鍵)</th>
         <th>簽收與否</th>
         <th>簽收憑證</th>
         <th>管理員簽收时间</th>
-        <th>簽收时间</th>
+        <th>住戶簽收时间</th>
         <th>電話</th>
+        <th>照片檔案</th>
+        <th>QRcode</th>
     </tr>
     @foreach($parcels as $parcel)
         <tr>
-            <td>{{ $parcel->id }}</td>
-            <td>{{ $parcel->A_ID }}</td>
-            <td>{{ $parcel->sign }}</td>
-            <td>{{ $parcel->Sign_proof }}</td>
-            <td>{{ $parcel->sign_date }}</td>
-            <td>{{ $parcel->sign_time }}</td>
-            <td>{{ $parcel->phone }}</td>
+            <td>{{$parcel->id }}</td>
+            <td>{{$parcel->sign }}</td>
+            <td>{{$parcel->Sign_proof }}</td>
+            <td>{{$parcel->sign_date}}</td>
+            <td>{{$parcel->sign_time}}</td>
+            <td>{{$parcel->phone}}</td>
+            <td>{{$parcel->Image}}</td>
+            <td>{{$parcel->Qrcode}}</td>
         </tr>
     @endforeach
 </table>

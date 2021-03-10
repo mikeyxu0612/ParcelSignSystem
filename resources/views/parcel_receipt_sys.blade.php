@@ -24,13 +24,15 @@
     <h1 align="center" style="font-size:500%;">
         包裹管理系統<br><br>
     </h1>
-    <a href="{{ route('addresses.index')}}" class="ml-1 underline" style="font-size:300%;">用戶住址</a>
-    <br><br>
-    <a href="{{route('Buildings.index')}}" class="ml-1 underline" style="font-size:300%;">棟名</a>
-    <br><br>
+    <div>
     <a href="{{route('parcels.index')}}" class="ml-1 underline" style="font-size:300%;">包裹</a>
+    </div>
     <br><br>
+    <br><br>
+    <br><br>
+    <div>
     <a href="{{route('tenants.index')}}" class="ml-1 underline" style="font-size:300%;">住户</a>
+    </div>
     <br><br>
     </body>
 </html>

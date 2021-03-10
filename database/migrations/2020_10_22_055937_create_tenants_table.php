@@ -17,12 +17,10 @@ class CreateTenantsTable extends Migration
             $table->id()->comment('住户編號');
             $table->string('T_name')->comment('住戶姓名');
             $table->char('phone')->comment('連絡電話');
-            $table->foreignId('A_ID')->unsigned()->comment('住址(外部键');
             $table->string('city')->nullable()->comment('縣/市');
             $table->string('area')->nullable()->comment('區/鎮');
             $table->string('road')->nullable()->comment('路段');
             $table->timestamps();
-            $table->foreign('A_ID')->references('id')->on('addresses')->onDelete('cascade');
         });
     }
 

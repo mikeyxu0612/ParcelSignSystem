@@ -41,16 +41,4 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
 
 
 
-    Route::get('addresses',[addresscontroller::class,'api_addresses']);
-
-    Route::delete('addresses',[addresscontroller::class,'api_delete']);
-
-    Route::patch('addresses',[addresscontroller::class,'api_addresses']);
-
-
-    Route::get('Buildings',[Buildingscontroller::class,'api_Buildings']);
-
-    Route::delete('Buildings',[Buildingscontroller::class,'api_delete']);
-
-    Route::patch('Buildings',[Buildingscontroller::class,'api_Buildings']);
 });

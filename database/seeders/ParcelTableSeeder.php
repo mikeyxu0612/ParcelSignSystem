@@ -89,7 +89,6 @@ class   ParcelTableSeeder extends Seeder
         //
         for($i=0;$i<51;$i++)
         {
-            $A_ID=rand(0,25);
             $sign=$this->generateRandomsign();
             $sign_proof=$this->generateRandomsignproof();
             $random_datetime =Carbon::now()->subMinutes(rand(1,55));
@@ -98,7 +97,6 @@ class   ParcelTableSeeder extends Seeder
             $sign_time = Carbon::now()->subMonths(rand(0, 12))->subRealDays(rand(0,31));
         DB::table('parcels')->insert(
             [
-              'A_ID'=>$A_ID,
                'sign'=>$sign,
                 'Sign_proof'=>$sign_proof,
                 'phone'=>$phone,

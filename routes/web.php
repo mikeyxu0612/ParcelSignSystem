@@ -26,37 +26,6 @@ Route::get('/', function () {
 });
 
 
-Route::get( 'addresses',[addresscontroller::class,'index'])->name('addresses.index');
-
-Route::get( 'addresses/create',[addresscontroller::class,'create'])->name('addresses.create');
-
-Route::get( 'addresses/{id}',[addresscontroller::class,'show'])->where('id','[0-9]+')->name('addresses.show');
-
-Route::get( 'addresses/{id}/edit',[addresscontroller::class,'edit'])->where('id','[0-9]+')->name('addresses.edit');
-
-Route::post('addresses/store',[addresscontroller::class,'store'])->name('addresses.store');
-
-Route::patch('addresses/update/{id}',[addresscontroller::class,'update'])->where('id','[0-9]+')->name('addresses.update');
-
-Route::delete('addresses/delete/{id}',[addresscontroller::class, 'destroy'])->where('id','[0-9]+')->name('addresses.destroy');
-
-
-Route::get( 'Buildings',[Buildingscontroller::class,'index'])->name('Buildings.index');
-
-Route::get( 'Buildings/create',[Buildingscontroller::class,'create'])->name('Buildings.create');
-
-Route::get( 'Buildings/{id}',[Buildingscontroller::class,'show'])->where('id','[0-9]+')->name('Buildings.show');
-
-Route::get( 'Buildings/{id}/edit',[Buildingscontroller::class,'edit'])->where('id','[0-9]+')->name('Buildings.edit');
-
-Route::post('Buildings/store',[Buildingscontroller::class,'store'])->name('Buildings.store');
-
-Route::patch('Buildings/update/{id}',[Buildingscontroller::class,'update'])->where('id','[0-9]+')->name('Buildings.update');
-
-Route::delete('Buildings/delete/{id}',[Buildingscontroller::class, 'destroy'])->where('id','[0-9]+')->name('Buildings.destroy');
-
-
-
 Route::get( 'parcels',[parcelscontroller::class,'index'])->name('parcels.index');
 
 Route::get( 'parcels/create',[parcelscontroller::class,'create'])->name('parcels.create');
