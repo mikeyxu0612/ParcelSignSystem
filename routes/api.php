@@ -31,14 +31,21 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
 
     Route::patch('parcels',[parcelscontroller::class,'api_update']);
 
+    Route::post('parcels',[parcelscontroller::class,'api_create']);
+
+
 
 
     Route::get('tenants',[tenantscontroller::class,'api_tenants']);
+
+    Route::post('tenants',[tenantscontroller::class,'api_create']);
 
     Route::delete('tenants',[tenantscontroller::class,'api_delete']);
 
     Route::patch('tenants',[tenantscontroller::class,'api_update']);
 
+    Route::get('tenants',[tenantscontroller::class,'api_show']);
 
+    Route::post('tenants',[tenantscontroller::class,'api_Select']);
 
 });

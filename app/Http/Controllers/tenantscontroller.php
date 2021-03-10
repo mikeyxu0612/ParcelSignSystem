@@ -79,7 +79,6 @@ class tenantscontroller extends Controller
     {
      $T_name=$request->input('T_name');
      $phone=$request->input('phone');
-     $A_ID=$request->input('A_ID');
      $city=$request->input('city');
      $area=$request->input('area');
      $road=$request->input('road');
@@ -88,7 +87,6 @@ class tenantscontroller extends Controller
      tenant::create([
          'T_name'=>$T_name,
          'phone'=>$phone,
-         'A_ID'=>$A_ID,
          'created_at'=>$random_datetime,
          'updated_at'=>$random_datetime,
          'city'=>$city,
@@ -106,7 +104,6 @@ class tenantscontroller extends Controller
 
         $tenant->T_name=$request->input('T_name');
         $tenant->phone=$request->input('phone');
-        $tenant->A_ID=$request->input('A_ID');
         $tenant->save();
         return redirect('tenants');
     }
@@ -157,7 +154,6 @@ class tenantscontroller extends Controller
           }
         $tenant->T_name=$request->input('T_name');
         $tenant->phone=$request->input('phone');
-        $tenant->A_ID=$request->input('A_ID');
         if($tenant->save())
         {
             return response()->json(['status'=>1,]);
@@ -167,4 +163,40 @@ class tenantscontroller extends Controller
     }
 
 
+
+    public function api_show(Request $request)
+    {
+        return tenant::find($request->input('id'));
+    }
+
+
+    public function api_Select(Request $request)
+    {
+        return tenant::find($request->input('T_name'));
+    }
+
+    public function api_create(Request $request)
+    {
+        $T_name=$request->input('T_name');
+        $phone=$request->input('phone');
+        $city=$request->input('city');
+        $area=$request->input('area');
+        $road=$request->input('road');
+        $random_datetime = Carbon::now()->subMinutes(rand(1, 55));
+        $tenant=tenant::create([
+            'T_name'=>$T_name,
+            'phone'=>$phone,
+            'created_at'=>$random_datetime,
+            'updated_at'=>$random_datetime,
+            'city'=>$city,
+            'area'=>$area,
+            'road'=>$road,
+        ]);
+        if($tenant->save())
+        {
+            return response()->json(['status'=>1,]);
+        }else{
+            return response()->json(['status'=>0,]);
+        }
+    }
 }
