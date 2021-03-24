@@ -40,6 +40,8 @@ Route::patch('parcels/update/{id}',[parcelscontroller::class,'update'])->where('
 
 Route::delete('parcels/delete/{id}',[parcelscontroller::class, 'destroy'])->where('id','[0-9]+')->name('parcels.destroy');
 
+Route::post('parcels/photos',[parcelscontroller::class,'photos'])->name('parcels.photo');
+
 
 
 Route::get( 'tenants',[tenantscontroller::class,'index'])->name('tenants.index');

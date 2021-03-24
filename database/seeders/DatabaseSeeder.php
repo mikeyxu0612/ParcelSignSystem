@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(AddressTableSeeder::class);
-        $this->call(BuildingTableSeeder::class);
         $this->call(ParcelTableSeeder::class);
         $this->call(TenantsTableSeeder::class);
         // \App\Models\User::factory(10)->create();

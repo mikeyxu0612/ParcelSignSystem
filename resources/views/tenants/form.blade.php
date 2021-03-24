@@ -7,20 +7,16 @@
     {!! Form::text('phone',null,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('A_ID','簽收人住址(外部鍵):') !!}
-    {!! Form::text('A_ID',null,['class'=>'form-control']) !!}
+    {!! Form::label('city','縣市') !!}
+    {!! Form::text('city',null,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('','簽收人住址(外部鍵):') !!}
-    {!! Form::text('A_ID',null,['class'=>'form-control']) !!}
+    {!! Form::label('area','區/鎮') !!}
+    {!! Form::text('area',null,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('A_ID','簽收人住址(外部鍵):') !!}
-    {!! Form::text('A_ID',null,['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('A_ID','簽收人住址(外部鍵):') !!}
-    {!! Form::text('A_ID',null,['class'=>'form-control']) !!}
+    {!! Form::label('road','路段') !!}
+    {!! Form::text('road',null,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::submit($SubmitButtonText,['class'=>'btn btn-primary form-control']) !!}

@@ -165,23 +165,12 @@ class parcelscontroller extends Controller
 
     public function store(parcelRequest $request)
     {
-        $imagePath = $request->file('image')->store("uploads/", 'public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $image->save(public_path("storage/{$imagePath}"), 60);
-        $image->save();
       $sign=$request->input('sign');
       $sign_date=$request->input('sign_date');
       $sign_time=$request->input('sign_time');
       $phone=$request->input('phone');
       $sign_proof=$request->input('Sign_proof');
-      $id=rand();
         $random_datetime = Carbon::now()->subMinutes(rand(1, 55));
-        $qrcode=QrCode::size(200)
-            ->format('png')
-            ->generate(\request(url('parcels/edit',)),storage_path('app/public/qrcodes/'.$id.'.png'));
-
         parcel::create([
             'sign'=>$sign,
             'sign_date'=>$sign_date,
@@ -190,8 +179,6 @@ class parcelscontroller extends Controller
             'Sign_proof'=>$sign_proof,
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,
-            'Image'=>$imagePath,
-                'Qrcode'=>$qrcode
         ]);
         return redirect('parcels');
     }
@@ -215,6 +202,15 @@ class parcelscontroller extends Controller
        $parcel = parcel::findOrFail($id);
         $parcel->delete();
         return redirect('parcels');
+    }
+
+    public function photos(Request $request)
+    {
+   $Image=$request->file('imgUpload1')->store('images');
+    parcel::create([
+        'Image'=>$Image
+    ]);
+    return redirect('parcels');
     }
 }
 

@@ -104,6 +104,9 @@ class tenantscontroller extends Controller
 
         $tenant->T_name=$request->input('T_name');
         $tenant->phone=$request->input('phone');
+        $tenant->city=$request->input('city');
+        $tenant->area=$request->input('area');
+        $tenant->road=$request->input('road');
         $tenant->save();
         return redirect('tenants');
     }

@@ -27,7 +27,6 @@ class tenantRequest extends FormRequest
             //
             'T_name'=>'required|string|min:2|max:30',
             'phone'=>'required|string|min:10|max:20',
-            'A_ID'=>'required|numeric|min:1|max:1000',
         ];
     }
     public function messages()
@@ -37,9 +36,6 @@ class tenantRequest extends FormRequest
            'T_name.min'=>'住戶姓名至少為兩個子元',
            'phone.required'=>'電話為必填',
            'phone.min'=>'電話至少為10個號碼',
-           'A_ID.required'=>'住址為必填',
-           'A_ID.numeric'=>'外部键外部鍵為數字',
-           'A_ID.min'=>'外部键至少是1以上',
        ];
 
     }
