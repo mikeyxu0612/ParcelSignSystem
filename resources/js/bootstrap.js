@@ -10,6 +10,11 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.onload = function () {
+    //當頁面載完之後，用AddressSeleclList.Initialize()，
+    //傳入要綁定的縣市下拉選單ID及鄉鎮市區下拉選單ID
+    AddressSeleclList.Initialize('縣市1', '鄉鎮市區1');}
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

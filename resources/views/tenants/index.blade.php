@@ -4,6 +4,7 @@
 <h1>
     包裹管理系統(住戶)<br><br>
 </h1>
+
 <p style="font-size: 150%"><a href="{{route('tenants.create')}}">新增</a></p>
 <br>
 <form action="/tenants/AddressID" method='POST'>

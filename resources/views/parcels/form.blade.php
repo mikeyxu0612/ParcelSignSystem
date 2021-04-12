@@ -18,6 +18,7 @@
     {!! Form::label('phone','电话:') !!}
     {!! Form::text('phone',null,['class'=>'form-control']) !!}
 </div>
+
 <div class="form-group">
     {!! Form::submit($SubmitButtonText,['class'=>'btn btn-primary form-control']) !!}
 </div>

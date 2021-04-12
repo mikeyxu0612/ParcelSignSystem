@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\tenantRequest;
+use Illuminate\Support\Facades\Http;
 
 class tenantscontroller extends Controller
 {
@@ -21,7 +22,6 @@ class tenantscontroller extends Controller
         {
             $data["$address->T_name"] = $address->T_name;
         }
-
         $tenants =DB::table('tenants')
             ->orderBy('tenants.id')
             ->select(

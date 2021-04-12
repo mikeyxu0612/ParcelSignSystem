@@ -165,6 +165,7 @@ class parcelscontroller extends Controller
 
     public function store(parcelRequest $request)
     {
+
       $sign=$request->input('sign');
       $sign_date=$request->input('sign_date');
       $sign_time=$request->input('sign_time');

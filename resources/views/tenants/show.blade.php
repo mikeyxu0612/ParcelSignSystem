@@ -33,7 +33,9 @@
             <td>{{$parcel->sign_time}}</td>
             <td>{{$parcel->phone}}</td>
             <td>{{$parcel->Image}}</td>
-            <td>{{$parcel->Qrcode}}</td>
+            <td><div class="visible-print text-center">
+                    {!! QrCode::size(100)->generate(Request::url('$tenant.edit'))  !!}
+                </div></td>
         </tr>
     @endforeach
 </table>
