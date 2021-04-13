@@ -5,7 +5,6 @@
     包裹管理系統(新增包裹表單)<br><br>
 </h1>
 {!! Form::open(['url'=>'parcels/store']) !!}
-@include('parcels.photo')
 @include('message.list')
  @include('parcels.form',['SubmitButtonText'=>'新增包裹'])
 {!! Form::close() !!}

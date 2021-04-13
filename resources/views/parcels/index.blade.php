@@ -31,7 +31,9 @@
             <td>{{$parcel->sign_time}}</td>
             <td>{{$parcel->phone}}</td>
             <td>{{$parcel->Image}}</td>
-            <td>{{$parcel->Qrcode}}</td>
+            <td><div class="visible-print text-center">
+                    {!! QrCode::size(100)->generate(Request::url('parcels/edit'))  !!}
+                </div></td>
             <td><a href="{{route('parcels.show',['id'=>$parcel->id])}}">显示</a></td>
             <td><a href="{{route('parcels.edit',['id'=>$parcel->id])}}">修改</a></td>
             <td>
@@ -40,6 +42,8 @@
                     @method('delete')
                     @csrf
                 </form>
+            </td>
+            <td>
             </td>
         </tr>
     @endforeach

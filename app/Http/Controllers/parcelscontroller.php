@@ -99,22 +99,12 @@ class parcelscontroller extends Controller
     public function api_create(Request $request)
     {
 
-        $imagePath = $request->file('image')->store("uploads/", 'public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $image->save(public_path("storage/{$imagePath}"), 60);
-        $image->save();
         $sign=$request->input('sign');
         $sign_date=$request->input('sign_date');
         $sign_time=$request->input('sign_time');
         $phone=$request->input('phone');
         $sign_proof=$request->input('Sign_proof');
-        $id=rand();
         $random_datetime = Carbon::now()->subMinutes(rand(1, 55));
-        $qrcode=QrCode::size(200)
-            ->format('png')
-            ->generate(\request(url('parcels/edit',)),storage_path('app/public/qrcodes/'.$id.'.png'));
 
       $parcel = parcel::create([
             'sign'=>$sign,
@@ -124,12 +114,10 @@ class parcelscontroller extends Controller
             'Sign_proof'=>$sign_proof,
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,
-            'Image'=>$imagePath,
-            'Qrcode'=>$qrcode
         ]);
         if($parcel->save())
         {
-            return response()->json([
+            return response()->view('parcels.show')->json([
                 'status'=>1,
 
             ]);

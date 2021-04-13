@@ -34,7 +34,7 @@
             <td>{{$parcel->phone}}</td>
             <td>{{$parcel->Image}}</td>
             <td><div class="visible-print text-center">
-                    {!! QrCode::size(100)->generate(Request::url('$tenant.edit'))  !!}
+                    {!! QrCode::size(100)->generate(Request::url('$parcels.edit'))  !!}
                 </div></td>
         </tr>
     @endforeach

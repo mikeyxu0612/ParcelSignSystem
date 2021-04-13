@@ -11,6 +11,9 @@
     簽收时间:{{$parcel->sign_time}}<br/>
     電話:{{$parcel->phone}}<br/>
       {!! Form::close() !!}
+<td><div class="visible-print text-center">
+        {!! QrCode::size(100)->generate(Request::url('parcels/edit'))  !!}
+    </div></td>
 <a href="/parcels"><b>返回包裹表單</b></a>
 </body>
 @endsection
