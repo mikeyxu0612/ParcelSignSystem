@@ -153,7 +153,7 @@ class parcelscontroller extends Controller
 
     public function store(parcelRequest $request)
     {
-
+        $Image=$request->file('photo')->store('public/images');
       $sign=$request->input('sign');
       $sign_date=$request->input('sign_date');
       $sign_time=$request->input('sign_time');
@@ -165,6 +165,7 @@ class parcelscontroller extends Controller
             'sign_date'=>$sign_date,
             'sign_time'=>$sign_time,
             'phone'=>$phone,
+            'photo'=>$Image,
             'Sign_proof'=>$sign_proof,
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,

@@ -18,6 +18,10 @@
     {!! Form::label('phone','电话:') !!}
     {!! Form::text('phone',null,['class'=>'form-control']) !!}
 </div>
+<div class="form-group" method="POST" enctype="multipart/form-data">
+    {!! Form::label('photo','照片:') !!}
+    {!! Form::file('photo',null,['class'=>'form-control']) !!}
+</div>
 
 <div class="form-group">
     {!! Form::submit($SubmitButtonText,['class'=>'btn btn-primary form-control']) !!}
