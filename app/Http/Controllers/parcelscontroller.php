@@ -153,7 +153,19 @@ class parcelscontroller extends Controller
 
     public function store(parcelRequest $request)
     {
-        $Image=$request->file('photo')->store('public/images');
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public');
+            $request->image = $path;
+            if ($request->image) {
+                Storage::disk('public')->delete($request->image);
+            }
+            // 接著不管原先有無圖片，都會把圖片存入
+            $path = $request->file('image')->store('public');;
+            $request->image = $path;
+        }
       $sign=$request->input('sign');
       $sign_date=$request->input('sign_date');
       $sign_time=$request->input('sign_time');
@@ -165,7 +177,7 @@ class parcelscontroller extends Controller
             'sign_date'=>$sign_date,
             'sign_time'=>$sign_time,
             'phone'=>$phone,
-            'photo'=>$Image,
+            'photo'=>$path,
             'Sign_proof'=>$sign_proof,
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,
@@ -194,13 +206,5 @@ class parcelscontroller extends Controller
         return redirect('parcels');
     }
 
-    public function photos(Request $request)
-    {
-   $Image=$request->file('imgUpload1')->store('images');
-    parcel::create([
-        'Image'=>$Image
-    ]);
-    return redirect('parcels');
-    }
 }
 
