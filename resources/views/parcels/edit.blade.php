@@ -6,7 +6,6 @@
 </h1>
 {!! Form::model($parcel,['method'=>'PATCH','action'=>['\App\Http\Controllers\parcelscontroller@update',$parcel->id]],) !!}
 @include('message.list')
-@include('parcels.photo')
 @include('parcels.form',['SubmitButtonText'=>'修改包裹'])
 
 {!! Form::close() !!}

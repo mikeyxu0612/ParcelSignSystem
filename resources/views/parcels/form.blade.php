@@ -18,14 +18,10 @@
     {!! Form::label('phone','电话:') !!}
     {!! Form::text('phone',null,['class'=>'form-control']) !!}
 </div>
-
-<form method="post" action="/" enctype="multipart/form-data">
-    @csrf
-    <label for="image" class="block text-sm leading-5 font-medium text-gray-700">
-        照片上傳
-        <input type="file" id="image" name = "image"class="form-control">
-    </label>
-</form>
+<div class="form-group" enctype ="multipart/form-data">
+    {!! Form::label('image','照片:') !!}
+    {!! Form::file('image',null,['class'=>'form-control-file']) !!}
+</div>
 <div class="form-group">
     {!! Form::submit($SubmitButtonText,['class'=>'btn btn-primary form-control']) !!}
 </div>
