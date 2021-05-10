@@ -15,6 +15,7 @@ class parcel extends Model
         'sign_date',
         'phone',
         'Image',
+        'type',
         'created_at',
         'updated_at'
     ];

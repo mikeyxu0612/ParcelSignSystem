@@ -10,6 +10,7 @@
     管理員簽收时间:{{$parcel->sign_date}}<br/>
     簽收时间:{{$parcel->sign_time}}<br/>
     電話:{{$parcel->phone}}<br/>
+    物品名稱:{{$parcel->type}}<br>
       {!! Form::close() !!}
 <td><div class="visible-print text-center">
         {!! QrCode::size(100)->generate(Request::url('parcels/edit'))  !!}

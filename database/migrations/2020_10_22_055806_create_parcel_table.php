@@ -20,8 +20,8 @@ class CreateParcelTable extends Migration
             $table->char('phone')->comment('聯絡電話')->nullable();
             $table->date('sign_time')->default('2019-01-01')->nullable()->comment('用戶簽收时间');
             $table->string('Sign_proof')->comment('簽收憑證');
+            $table->string('type')->comment('物品名稱')->nullable();
             $table->string('Image')->nullable()->comment('包裹照片');
-            $table->string('Qrcode')->nullable()->comment('QRcode');
             $table->timestamps();
         });
     }

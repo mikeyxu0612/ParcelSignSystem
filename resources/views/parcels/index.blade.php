@@ -15,6 +15,7 @@
         <th>管理員簽收时间</th>
         <th>住戶簽收时间</th>
         <th>電話</th>
+        <th>物品名稱</th>
         <th>照片檔案</th>
         <th>QRcode</th>
         <th>操作1</th>
@@ -30,6 +31,7 @@
             <td>{{$parcel->sign_date}}</td>
             <td>{{$parcel->sign_time}}</td>
             <td>{{$parcel->phone}}</td>
+            <td>{{$parcel->type}}</td>
             <td>{{$parcel->Image}}</td>
             <td><div class="visible-print text-center">
                     {!! QrCode::size(100)->generate(Request::url('parcels/edit'))  !!}

@@ -32,7 +32,7 @@ class parcelscontroller extends Controller
                 'tenants.id as t_ID',
                 'parcels.phone',
                 'parcels.Image',
-                'parcels.Qrcode',
+                'parcels.type',
             )->get();
         return view( 'parcels.index',['parcels'=>$parcels]);
     }
@@ -78,6 +78,7 @@ class parcelscontroller extends Controller
         $parcel->Sign_proof=$request->input('Sign_proof');
         $parcel->sign_date=$request->input('sign_date');
         $parcel->phone=$request->input('phone');
+        $parcel->type=$request->input('tpye');
         $parcel->sign_time=$request->input('sign_time');
 
         if($parcel->save())
@@ -98,11 +99,20 @@ class parcelscontroller extends Controller
 
     public function api_create(Request $request)
     {
-
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imagePath = request('image')->store('public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $image->save(public_path("storage/{$imagePath}"), 60);
+        $image->save();
         $sign=$request->input('sign');
         $sign_date=$request->input('sign_date');
         $sign_time=$request->input('sign_time');
         $phone=$request->input('phone');
+        $type=$request->input('type');
         $sign_proof=$request->input('Sign_proof');
         $random_datetime = Carbon::now()->subMinutes(rand(1, 55));
 
@@ -112,6 +122,7 @@ class parcelscontroller extends Controller
             'sign_time'=>$sign_time,
             'phone'=>$phone,
             'Sign_proof'=>$sign_proof,
+            'type'=>$type,
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,
         ]);
@@ -163,6 +174,7 @@ class parcelscontroller extends Controller
         $image->save(public_path("storage/{$imagePath}"), 60);
         $image->save();
       $sign=$request->input('sign');
+      $type=$request->input('type');
       $sign_date=$request->input('sign_date');
       $sign_time=$request->input('sign_time');
       $phone=$request->input('phone');
@@ -174,6 +186,7 @@ class parcelscontroller extends Controller
             'sign_time'=>$sign_time,
             'phone'=>$phone,
             'Image'=>$imagePath,
+            'type'=>$type,
             'Sign_proof'=>$sign_proof,
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,
@@ -190,6 +203,7 @@ class parcelscontroller extends Controller
         $parcel->Sign_proof=$request->input('Sign_proof');
         $parcel->sign_date=$request->input('sign_date');
         $parcel->phone=$request->input('phone');
+        $parcel->type=$request->input('type');
         $parcel->sign_time=$request->input('sign_time');
         $parcel->save();
         return redirect('parcels');
