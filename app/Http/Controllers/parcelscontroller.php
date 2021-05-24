@@ -99,9 +99,6 @@ class parcelscontroller extends Controller
 
     public function api_create(Request $request)
     {
-        request()->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
         $imagePath = request('image')->store('public');
         $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
             $constraint->aspectRatio();
@@ -165,7 +162,7 @@ class parcelscontroller extends Controller
     public function store(parcelRequest $request)
     {
         request()->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required',
         ]);
         $imagePath = request('image')->store('public');
         $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {

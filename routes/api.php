@@ -27,25 +27,25 @@ Route::post('login',[AuthController::class,'login']);
 Route::group(['middleware'=>'auth:sanctum'],function (){
     Route::get('parcels',[parcelscontroller::class,'api_parcels']) ;
 
-    Route::delete('parcels',[parcelscontroller::class,'api_delete']);
+    Route::delete('parcels/delete',[parcelscontroller::class,'api_delete']);
 
-    Route::patch('parcels',[parcelscontroller::class,'api_update']);
+    Route::patch('parcels/update',[parcelscontroller::class,'api_update']);
 
-    Route::post('parcels',[parcelscontroller::class,'api_create']);
+    Route::post('parcel/create',[parcelscontroller::class,'api_create']);
 
 
 
 
     Route::get('tenants',[tenantscontroller::class,'api_tenants']);
 
-    Route::post('tenants',[tenantscontroller::class,'api_create']);
+    Route::post('tenants/create',[tenantscontroller::class,'api_create']);
 
-    Route::delete('tenants',[tenantscontroller::class,'api_delete']);
+    Route::delete('tenants/delete',[tenantscontroller::class,'api_delete']);
 
-    Route::patch('tenants',[tenantscontroller::class,'api_update']);
+    Route::patch('tenants/update',[tenantscontroller::class,'api_update']);
 
-    Route::get('tenants',[tenantscontroller::class,'api_show']);
+    Route::get('tenants/show',[tenantscontroller::class,'api_show']);
 
-    Route::post('tenants',[tenantscontroller::class,'api_Select']);
+    Route::post('tenants/Select',[tenantscontroller::class,'api_Select']);
 
 });
