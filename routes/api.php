@@ -31,8 +31,7 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
 
     Route::patch('parcels/update',[parcelscontroller::class,'api_update']);
 
-    Route::post('parcel/create',[parcelscontroller::class,'api_create']);
-
+    Route::post('parcels/create',[parcelscontroller::class,'api_create']);
 
 
 

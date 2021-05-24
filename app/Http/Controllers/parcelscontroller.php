@@ -99,12 +99,14 @@ class parcelscontroller extends Controller
 
     public function api_create(Request $request)
     {
-        $imagePath = request('image')->store('public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $image->save(public_path("storage/{$imagePath}"), 60);
-        $image->save();
+        request()->validate([
+            'image' => 'required',
+        ]);
+        if ($request->file('image') == null) {
+            $imagePath = "無圖片";
+        }else{
+            $imagePath = $request->file('image')->store('public');
+        }
         $sign=$request->input('sign');
         $sign_date=$request->input('sign_date');
         $sign_time=$request->input('sign_time');
@@ -120,6 +122,7 @@ class parcelscontroller extends Controller
             'phone'=>$phone,
             'Sign_proof'=>$sign_proof,
             'type'=>$type,
+            'image'=>$imagePath,
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,
         ]);
@@ -164,12 +167,11 @@ class parcelscontroller extends Controller
         request()->validate([
             'image' => 'required',
         ]);
-        $imagePath = request('image')->store('public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->resize(900, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $image->save(public_path("storage/{$imagePath}"), 60);
-        $image->save();
+        if ($request->file('image') == null) {
+            $imagePath = "無圖片";
+        }else{
+            $imagePath = $request->file('image')->store('public');
+        }
       $sign=$request->input('sign');
       $type=$request->input('type');
       $sign_date=$request->input('sign_date');
