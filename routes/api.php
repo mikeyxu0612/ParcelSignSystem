@@ -29,7 +29,7 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
 
     Route::delete('parcels/delete',[parcelscontroller::class,'api_delete']);
 
-    Route::patch('parcels/update',[parcelscontroller::class,'api_update']);
+    Route::put('parcels/update',[parcelscontroller::class,'api_update']);
 
     Route::post('parcels/create',[parcelscontroller::class,'api_create']);
 
@@ -41,7 +41,7 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
 
     Route::delete('tenants/delete',[tenantscontroller::class,'api_delete']);
 
-    Route::patch('tenants/update',[tenantscontroller::class,'api_update']);
+    Route::put('tenants/update',[tenantscontroller::class,'api_update']);
 
     Route::get('tenants/show',[tenantscontroller::class,'api_show']);
 

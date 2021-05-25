@@ -4,7 +4,7 @@
 <h1>
     包裹管理系統(修改包裹表單)<br><br>
 </h1>
-{!! Form::model($parcel,['method'=>'PATCH','action'=>['\App\Http\Controllers\parcelscontroller@update',$parcel->id]],) !!}
+{!! Form::model($parcel,['method'=>'PATCH','enctype'=>'multipart/form-data>','action'=>['\App\Http\Controllers\parcelscontroller@update',$parcel->id]],) !!}
 @include('message.list')
 @include('parcels.form',['SubmitButtonText'=>'修改包裹'])
 

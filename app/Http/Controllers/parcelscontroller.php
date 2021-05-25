@@ -99,14 +99,6 @@ class parcelscontroller extends Controller
 
     public function api_create(Request $request)
     {
-        request()->validate([
-            'image' => 'required',
-        ]);
-        if ($request->file('image') == null) {
-            $imagePath = "無圖片";
-        }else{
-            $imagePath = $request->file('image')->store('public');
-        }
         $sign=$request->input('sign');
         $sign_date=$request->input('sign_date');
         $sign_time=$request->input('sign_time');
@@ -122,7 +114,7 @@ class parcelscontroller extends Controller
             'phone'=>$phone,
             'Sign_proof'=>$sign_proof,
             'type'=>$type,
-            'image'=>$imagePath,
+            /*'image'=>$imagePath,*/
             'created_at'=>$random_datetime,
             'updated_at'=>$random_datetime,
         ]);
@@ -164,13 +156,10 @@ class parcelscontroller extends Controller
 
     public function store(parcelRequest $request)
     {
-        request()->validate([
-            'image' => 'required',
-        ]);
-        if ($request->file('image') == null) {
-            $imagePath = "無圖片";
+       if ($request->hasFile('image')) {
+           $imagePath = $request->File('image')->store('public');
         }else{
-            $imagePath = $request->file('image')->store('public');
+           $imagePath = "無圖片";
         }
       $sign=$request->input('sign');
       $type=$request->input('type');

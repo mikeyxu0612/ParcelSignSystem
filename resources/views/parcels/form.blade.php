@@ -22,9 +22,9 @@
     {!! Form::label('type','物品名稱:') !!}
     {!! Form::text('type',null,['class'=>'form-control']) !!}
 </div>
-<div class="form-group" enctype="multipart/form-data" >
+<div class="form-group">
     {!! Form::label('image','照片:') !!}
-    {!! Form::file('image',null,['class'=>'form-control-file']) !!}
+    {!! Form::File('image',['class'=>'form-control-file']) !!}
 </div>
 <div class="form-group">
     {!! Form::submit($SubmitButtonText,['class'=>'btn btn-primary form-control']) !!}

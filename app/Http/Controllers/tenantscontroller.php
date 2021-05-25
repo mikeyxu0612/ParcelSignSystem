@@ -172,7 +172,7 @@ class tenantscontroller extends Controller
 
     public function api_show(Request $request)
     {
-        return tenant::find($request->input('id'));
+        return tenant::find($request->input('T_name'));
     }
 
 
